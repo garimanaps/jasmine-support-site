@@ -1,19 +1,80 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Jasmine's Power Move</title>
+    <title>Jasmine's Therapy Era</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            overflow: hidden;
+        }
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ffb3c6, #ff85a2);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkleAnim 1s ease-out forwards;
+        }
+
+        @keyframes sparkleAnim {
+            0% {opacity: 1; transform: scale(1);}
+            100% {opacity: 0; transform: scale(2) translateY(-20px);}
+        }
+
+        .walking-cat {
+            position: absolute;
+            bottom: 20px;
+            left: -100px;
+            width: 80px;
+            animation: walkAcross 20s linear infinite;
+        }
+
+        @keyframes walkAcross {
+            from { left: -100px; }
+            to { left: 110%; }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hey Jasmine, are you ready to be emotionally unhinged *and* thriving?</h1>
+        <h1>hi jasmine! are u ready to be in ur therapy era?</h1>
         <div class="buttons">
             <button id="yesBtn">Yes</button>
             <button id="noBtn">No</button>
         </div>
+        <img src="https://media.tenor.com/yheo1GGu3FwAAAAd/cat-typing.gif" class="pet" alt="support pet">
     </div>
-    <script src="script.js"></script>
+
+    <!-- Walking cat (cute + minimalist) -->
+    <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" class="walking-cat" alt="walking cat">
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+
+        noBtn.addEventListener('mouseover', () => {
+            const i = Math.floor(Math.random() * window.innerWidth);
+            const j = Math.floor(Math.random() * window.innerHeight);
+            noBtn.style.left = i + 'px';
+            noBtn.style.top = j + 'px';
+        });
+
+        yesBtn.addEventListener('click', () => {
+            window.location.href = 'https://placeholder.com';
+        });
+
+        document.addEventListener('click', function(e) {
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = (e.clientX + Math.random() * 20 - 10) + 'px';
+                sparkle.style.top = (e.clientY + Math.random() * 20 - 10) + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        });
+    </script>
 </body>
 </html>
